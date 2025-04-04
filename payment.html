@@ -27,13 +27,49 @@
 <div id="header_img"><img src="img/header.jpg"></div>
 </header>
 <main>
-	
-
-
-
-
-
-
+    <div class="payment-method">
+      <form>
+        <table>
+          <tr>
+            <th>Tarjeta de débito o crédito</th>
+            <img src="img/mastercard.png" width="35px">
+            <img src="img/visa.png" width="35px">
+            <img src="img/american.png" width="30px">
+          </tr>
+          <tr>
+            <td>
+              <p>Número de tarjeta</p>
+              <input type="text" name="target">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Vencimiento</p>
+              <input type="text" name="expiration">
+              <p>Código de seguridad</p>
+              <input type="text" name="ccv">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Nombre del titular</p>
+              <input type="text" name="holder-name">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Correo electrónico</p>
+              <input type="text" name="email">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button onclick=".href='payment_confirmation.html'">Pagar</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
 </main>
 <footer>
   <div class="footer">

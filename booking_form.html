@@ -27,13 +27,109 @@
 <div id="header_img"><img src="img/header.jpg"></div>
 </header>
 <main>
-	
-
-
-
-
-
-
+  <div class="form">
+      <form>
+      <table>
+        <tr>
+          <td><input type="text" name="nombre" placeholder="Nombre completo"></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="email" placeholder="Correo electrónico"></td>
+          </tr>
+            <tr>
+            <td><input type="text" name="phone" placeholder="Número de teléfono"></td>
+          </tr>
+            <tr>
+            <td><input type="text" name="city-country" placeholder="Ciudad y país de residencia"></td>
+          </tr>
+          <tr>
+            <td><label for="date">Fecha de entrada-salida:</label></td>
+            <td><input type="date" id="fecha" name="date" required></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="guests-number">Número de húespedes:</label>
+              <select name="guests-number">
+                <option disabled selected>Seleccione</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>6</option>
+                </select>
+               </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="guests-age">Edades de los húespedes:</label>
+               </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="guests-adults">Adultos</label>
+              <select name="guests-number">
+                <option disabled selected>Seleccione</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>6</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="guests-childs">Niños</label>
+              <select name="guests-number">
+                <option disabled selected>Seleccione</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="rooms">Tipo de habitación:</label>
+              <select name="rooms">
+                <option disabled selected>Seleccione</option>
+                <option>Junior suite</option>
+                <option>Master suite</option>
+                <option>Deluxe suite</option>
+                </select>
+               </td>
+          </tr>
+          <tr>
+            <td>
+              <textarea placeholder="Peticiones o comentarios adicionales"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Reservar tour<input type="checkbox" name="tour">
+              <label for="tour-conf">Seleccione el tour</label>
+                <select name="tour">
+                <option disabled selected>Seleccione</option>
+                <option>Tour de Canopy</option>
+                <option>Tour de Snorkel</option>
+                <option>Tour en Lancha</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <input type="checkbox" name="politics"> 
+                <label>Acepto la<a href="#"> política de privacidad</a></label>
+            </td>
+        </tr>
+        <tr>
+          <td>
+            <button onclick=".href='payment.html'">Enviar Solicitud de Reserva
+           </button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </main>
 <footer>
   <div class="footer">
