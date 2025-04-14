@@ -8,10 +8,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
 	<title>Pagina Principal</title>
 </head>
-<nav>
+<nav class="navbar navbar-expand-lg" style="height: 100px;">
+  <a class="navbar-brand" href="#"><img src="img/logo.png" width="100px" height="100px"></a>
+  <div class="container-fluid" style="justify-content: right;">
 <ul class="nav justify-content-end">
   <li class="nav-item">
-    <a class="nav-link active">Check-in</a>
+    <a class="nav-link active">Inicio</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Galeria</a>
@@ -26,9 +28,10 @@
     <a class="nav-link" href="contact.html">Contactenos</a>
   </li>
 </ul>
+</div>
 </nav>
 <header>
-<div id="header_img"><img src="img/header.jpg"></div>
+  <div id="header_img"><img src="img/header.jpeg"></div>
 </header>
 <main>
     <div id="search-bar">
@@ -46,7 +49,7 @@
         <option value="2">2 Habitaciones - 4 Adultos</option>
         <option value="3">3 Habitaciones - 6 Adultos</option>
     </select>
-    <button type="submit">Buscar</button>
+    <button type="submit" style="  background-color: #2c3e50; color: white;">Buscar</button>
 </form>
   </div>
   <div id="carousel" class="carousel slide">
@@ -115,16 +118,30 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<div class="about-us">
-  <img src="img/about_us.jpg" width="200px">
-  <h4>Sobre Nosotros</h4>
-  <p>En Hotel La Vida Alegre, nos especializamos en ofrecer experiencias inolvidables en un entorno paradisíaco. Con un servicio excepcional, instalaciones de primer nivel y un ambiente acogedor, nuestro compromiso es brindarte momentos únicos de descanso y aventura. Ya sea que busques relajarte junto al mar, disfrutar de emocionantes actividades o deleitarte con la gastronomía local, estamos aquí para hacer de tu estadía una experiencia inigualable.</p>
-</div>
-<div class="vision">
-  <img src="img/vision.jpg" width="200px">
-  <h4>Nuestra Visión</h4>
-  <p>Ser el destino preferido por viajeros de todo el mundo, reconocidos por nuestra excelencia en hospitalidad, sostenibilidad y calidad de servicio. Aspiramos a crear experiencias memorables para nuestros huéspedes mientras preservamos la belleza natural y cultural de nuestro entorno, contribuyendo al desarrollo responsable del turismo.</p>
-</div>
+<section class="info-section">
+  <div class="info-block">
+    <img src="img/about_us.jpg" alt="Sobre Nosotros">
+    <div class="info-text">
+      <h4>Sobre Nosotros</h4>
+      <p>
+        En <strong>Hotel La Vida Alegre</strong>, nos especializamos en ofrecer experiencias inolvidables en un entorno paradisíaco. Con un servicio excepcional, instalaciones de primer nivel y un ambiente acogedor, nuestro compromiso es brindarte momentos únicos de descanso y aventura.
+        Ya sea que busques relajarte junto al mar, disfrutar de emocionantes actividades o deleitarte con la gastronomía local, estamos aquí para hacer de tu estadía una experiencia inigualable.
+      </p>
+    </div>
+  </div>
+
+  <div class="info-block reverse">
+    <img src="img/vision.jpg" alt="Nuestra Visión">
+    <div class="info-text">
+      <h4>Nuestra Visión</h4>
+      <p>
+        Ser el destino preferido por viajeros de todo el mundo, reconocidos por nuestra excelencia en hospitalidad, sostenibilidad y calidad de servicio.
+        Aspiramos a crear experiencias memorables para nuestros huéspedes mientras preservamos la belleza natural y cultural de nuestro entorno, contribuyendo al desarrollo responsable del turismo.
+      </p>
+    </div>
+  </div>
+</section>
+
 </main>
 <footer>
   <div class="footer">
