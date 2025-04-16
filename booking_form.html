@@ -20,7 +20,7 @@
     <a class="nav-link" href="rooms.html">Habitaciones</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active">Reservar</a>
+    <a class="nav-link active" href="booking_form.html">Reservar</a>
   </li>
     <li class="nav-item">
     <a class="nav-link" href="contact.html">Contactenos</a>
@@ -32,111 +32,100 @@
 <div id="header_img"><img src="img/header.jpeg"></div>
 </header>
 <main>
+  <h2 style="text-align: center; color: #2c3e50;   margin-top: 2rem; margin-bottom: 2rem;">Formulario de reserva</h2>
   <div class="form">
-      <form>
+    <form>
       <table>
+        <tr><td><input type="text" name="nombre" placeholder="Nombre completo" required></td></tr>
+        <tr><td><input type="text" name="email" placeholder="Correo electrónico" required></td></tr>
+        <tr><td><input type="text" name="phone" placeholder="Número de teléfono" required></td></tr>
+        <tr><td><input type="text" name="city-country" placeholder="Ciudad y país de residencia en formato: Roma, Italia" required></td></tr>
         <tr>
-          <td><input type="text" name="nombre" placeholder="Nombre completo"></td>
-          </tr>
-          <tr>
-            <td><input type="text" name="email" placeholder="Correo electrónico"></td>
-          </tr>
-            <tr>
-            <td><input type="text" name="phone" placeholder="Número de teléfono"></td>
-          </tr>
-            <tr>
-            <td><input type="text" name="city-country" placeholder="Ciudad y país de residencia"></td>
-          </tr>
-          <tr>
-            <td><label for="date">Fecha de entrada-salida:</label><input type="date" id="fecha" name="date" required></td>
-          </tr>
-          <tr>
-            <td>
-              <label for="guests-number">Número de húespedes:</label>
-              <select name="guests-number">
-                <option disabled selected>Seleccione</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                </select>
-               </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="guests-age">Edades de los húespedes:</label>
-               </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="guests-adults">Adultos</label>
-              <select name="guests-number">
-                <option disabled selected>Seleccione</option>
-                <option>1</option>
-                <option>2</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="guests-childs">Niños</label>
-              <select name="guests-number">
-                <option disabled selected>Seleccione</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="rooms">Tipo de habitación:</label>
-              <select name="rooms">
-                <option disabled selected>Seleccione</option>
-                <option>Junior suite</option>
-                <option>Master suite</option>
-                <option>Deluxe suite</option>
-                </select>
-               </td>
-          </tr>
-          <tr>
-            <td>
-              <textarea placeholder="Peticiones o comentarios adicionales"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Reservar tour<input type="checkbox" name="tour">
-              <label for="tour-conf">Seleccione el tour</label>
-                <select name="tour">
-                <option disabled selected>Seleccione</option>
-                <option>Tour de Canopy</option>
-                <option>Tour de Snorkel</option>
-                <option>Tour en Lancha</option>
-                </select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-                <input type="checkbox" name="politics"><label>Acepto la<a href="#"> política de privacidad</a></label>
-            </td>
+          <td>
+            <label for="fechaEntrada">Fecha de entrada:</label>
+            <input type="date" id="fechaEntrada" name="date" required>
+          </td>
+        </tr>
+        <Tr>
+          <td>
+            <label for="fechaSalida">Fecha de salida:</label>
+            <input type="date" id="fechaSalida" name="date" required>
+          </td>
+        </Tr>
+        <tr>
+          <td>
+            <label for="guests-number">Número de húespedes:</label>
+            <select name="guests-number" id="guests-number" required>
+              <option disabled selected>Seleccione</option>
+              <option>1</option><option>2</option><option>3</option>
+              <option>4</option><option>5</option><option>6</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="guests-age">Edades de los húespedes:</label></td>
         </tr>
         <tr>
           <td>
-            <button onclick=".href='payment.html'">Enviar Solicitud de Reserva
-           </button>
+            <label for="guests-adults">Adultos</label>
+            <select name="guests-adults">
+              <option disabled selected>Seleccione</option>
+              <option>1</option><option>2</option><option>4</option><option>5</option><option>6</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="guests-childs">Niños</label>
+            <select name="guests-childs">
+              <option disabled selected>Seleccione</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="rooms">Tipo de habitación:</label>
+            <select name="rooms" required>
+              <option disabled selected>Seleccione</option>
+              <option>Junior suite</option>
+              <option>Master suite</option>
+              <option>Deluxe suite</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <textarea placeholder="Peticiones o comentarios adicionales"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" name="tour">Reservar tour
+            <label for="tour-conf">Seleccione el tour
+            <select name="tour">
+              <option disabled selected>Seleccione</option>
+              <option>Tour de Canopy</option>
+              <option>Tour de Snorkel</option>
+              <option>Tour en Lancha</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" name="politics" required>Acepto la <a href="#">política de privacidad</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" onclick="window.location.href='payment.html'">Enviar Solicitud de Reserva</button>
           </td>
         </tr>
       </table>
     </form>
   </div>
 </main>
+<script src="reserva.js"></script>
 <footer>
   <div class="footer">
     <div class="social-media">

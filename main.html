@@ -13,7 +13,7 @@
   <div class="container-fluid" style="justify-content: right;">
 <ul class="nav justify-content-end">
   <li class="nav-item">
-    <a class="nav-link active">Inicio</a>
+    <a class="nav-link active" href="main.html">Inicio</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Galeria</a>
@@ -35,22 +35,24 @@
 </header>
 <main>
     <div id="search-bar">
-    <form action="search" method="GET">
-        <select name="destino">
-        <option value="" disabled selected>Seleccione un destino o hotel</option>
-        <option value="1">Hotel La Vida Alegre - Cancún</option>
-        <option value="2">Hôtel La Vida Alegre - Suiza</option>
-        <option value="3">Hotel La Vida Alegre - Costa Rica</option>
-    </select>
-    <label for="date">ENTRADA-SALIDA</label>
-    <input type="date" name="entrada-salida">
-    <select name="habitaciones">
-        <option value="1">1 Habitación - 2 Adultos</option>
-        <option value="2">2 Habitaciones - 4 Adultos</option>
-        <option value="3">3 Habitaciones - 6 Adultos</option>
-    </select>
-    <button type="submit" style="  background-color: #2c3e50; color: white;">Buscar</button>
-</form>
+      <form id="reservaForm">
+        <select name="destino" id="destino" required>
+          <option value="" disabled selected>Seleccione un destino o hotel</option>
+          <option value="1">Hotel La Vida Alegre - Cancún</option>
+          <option value="2">Hôtel La Vida Alegre - Suiza</option>
+          <option value="3">Hotel La Vida Alegre - Costa Rica</option>
+        </select>
+        <label for="entrada">Fecha de Entrada:</label>
+        <input type="date" id="entrada" name="entrada" required>
+        <label for="salida">Fecha de Salida:</label>
+        <input type="date" id="salida" name="salida" required>
+        <select name="habitaciones" id="habitaciones" required>
+          <option value="1">1 Habitación - 2 Adultos</option>
+          <option value="2">2 Habitaciones - 4 Adultos</option>
+          <option value="3">3 Habitaciones - 6 Adultos</option>
+        </select>
+        <button type="submit" style="background-color: #2c3e50; color: white;">Buscar</button>
+      </form>
   </div>
   <div id="carousel" class="carousel slide">
   <div class="carousel-inner">
@@ -143,6 +145,7 @@
 </section>
 
 </main>
+<script src="reserva.js" defer></script>
 <footer>
   <div class="footer">
     <div class="social-media">
