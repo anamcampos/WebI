@@ -163,6 +163,8 @@
 }
 
 .payment-method input[type="text"],
+.payment-method input[type="month"],
+.payment-method input[type="password"],
 .payment-method input[type="email"] {
   width: 100%;
   padding: 10px;
@@ -173,8 +175,8 @@
   box-sizing: border-box;
 }
 
-.payment-method button {
-  background-color: #65cf07;
+.payment-method #button {
+  background-color: #2c3e50;
   color: white;
   display: block;
   margin: auto;
@@ -226,7 +228,7 @@
   display: block;
 }
 
-.form button {
+.form #button {
   width: 100%;
   background-color: #2c3e50;
   color: white;
@@ -262,11 +264,7 @@
   font-family: 'Segoe UI', sans-serif;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
-.contact h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
+
 .contact img {
   width: 110px;
   margin-bottom: 20px;
@@ -309,7 +307,7 @@
   margin-bottom: 30px;
 }
 .confirmation button {
-  background-color: #007bff;
+  background-color: #2c3e50;
   color: white;
   border: none;
   padding: 12px 25px;
@@ -322,3 +320,9 @@
   background-color: #0056b3;
 }
 
+h2 {
+  text-align: center; 
+  color: #2c3e50;  
+  margin-top: 2rem; 
+  margin-bottom: 2rem;
+}

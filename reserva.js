@@ -1,95 +1,82 @@
- //----------------------------------------------------------------------------------------------------------------------------------------------//
- //This code is for the button SEARCH in the main page form
-//Code to validate and get information form the main form
-function manejarFormularioReserva() {
-    const form = document.getElementById("reservaForm");
-    if (!form) return; //
+function validateToPay(){
+  const name = document.booking-form.name.value;
+  const email = document.booking-form.email.value;
+  const phone = document.booking-form.phone.value;
+  const city_country = document.booking-form.city-city_country.value;
+  const check_in = document.booking-form.fechaEntrada.value;
+  const check_out = document.booking-form.fechaSalida.value;
+  const guest =document.booking-form.guests-number.value;
+  const adults=document.booking-form.guests-adults.value;
+  const kids=document.booking-form.guests-childs.value;
+  const room=document.booking-form.rooms.value;
+  const checkbox_tour=document.booking-form.tour;
+  const tour_type=document.booking-form.tour_type.value;
+  const checkbox_terms=document.booking-form.terms;
 
-    form.addEventListener("submit", function (event) { //Event to get the information when the button clicked
-      event.preventDefault(); //Avoids to refresh the page
-  
-      let destino = document.getElementById("destino").value;
-      let fechaEntrada = document.getElementById("entrada").value;
-      let fechaSalida = document.getElementById("salida").value;
-      let habitaciones = document.getElementById("habitaciones").value;
-      let hoy = new Date();
-  
-      if (!destino) {
-        alert("Por favor, seleccione un hotel.");
-        return;
-      }
-
-      if(new Date(fechaEntrada) <= hoy){
-        alert("La fecha de entrada debe ser posterior a la de hoy");
-        return;
-      }
-  
-      if (new Date(fechaSalida) <= new Date(fechaEntrada)) {
-        alert("La fecha de salida debe ser posterior a la de entrada.");
-        return;
-      }
-
-      if (new Date(fechaEntrada) > new Date(fechaSalida)) {
-        alert("La fecha de entrada debe ser anterior a la fecha de salida");
-        return;
-      }
-  
-      //Send the information to booking form page
-      let url = `booking_form.html?fechaEntrada=${encodeURIComponent(fechaEntrada)}&fechaSalida=${encodeURIComponent(fechaSalida)}&habitaciones=${encodeURIComponent(habitaciones)}&destino=${encodeURIComponent(destino)}`;
-      window.location.href = url;
-    });
+  if(name.lenght<=1){
+    alert('Debe escribir un nombre');
+    document.booking-form.name.focus();
+    return 0;
   }
-  
-  //Code to fill the form in booking form page
-  function rellenarFormularioBooking() {
-    if (!window.location.href.includes("booking_form.html")) return;
-  
-    function getQueryParam(param) { //Function to read the info in the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
-  
-    window.addEventListener("DOMContentLoaded", () => { //When the booking form page refresh and set the values
-      const fechaEntrada = getQueryParam("fechaEntrada");
-      const fechaSalida = getQueryParam("fechaSalida");
-      const habitaciones = getQueryParam("habitaciones");
-  
-      if (fechaEntrada) {
-        const fechaInput = document.getElementById("fechaEntrada");
-        if (fechaInput) fechaInput.value = fechaEntrada;
-      }
-  
-      if (fechaSalida) {
-        const fechaInput = document.getElementById("fechaSalida");
-        if (fechaInput) fechaInput.value = fechaSalida;
-      }
-  
-      const mapaHabitaciones = {
-        "1": "2",
-        "2": "4",
-        "3": "6"
-      };
-  
-      const numHuespedes = mapaHabitaciones[habitaciones];
-      const selectHuespedes = document.getElementById("guests-number");
-      if (numHuespedes && selectHuespedes) {
-        selectHuespedes.value = numHuespedes;
-      }
-    });
+
+  if(email.lenght<=1){
+    alert('Debe escribir un correo');
+    document.booking-form.email.focus();
+    return 0;
   }
-  
-  //Depends on the current page, run the function
-  document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.href.includes("main.html")) {
-      manejarFormularioReserva();
+
+  if(!isNaN(phone)){
+    alert('Debe ingresar numeros como telefono');
+    document.booking-form.phone.focus();
+    return 0;
+  }
+
+  if (!check_in || !check_out){
+    alert("Seleccione la fecha de entrada y/o salida");
+    document.booking-form.fechaEntrada.focus();
+    document.booking-form.fechaSalida.focus();
+    return 0;
+  }
+
+  if (new Date(check_out) <= new Date(check_in)) {
+    alert("La fecha de salida debe ser posterior a la de entrada.");
+    document.booking-form.fechaSalida.focus();
+    return 0;
+  }
+
+  if(document.booking-form.guests-number.selectedIndex==0){
+    alert("Debe seleccionar una cantidad de huespedes");
+    document.booking-form.guests-number.focus();
+    return 0;
+}
+  let sumGuest = parseInt(adults) + parseInt(kids);
+  let guests = parseInt(guest);
+
+  if(sumGest!=guests){
+    alert("Debe seleccionar una cantidad de adultos y/o niños igual a la cantidad de húespedes");
+    document.booking-form.guests-adults.focus();
+    document.booking-form.guests-childs.focus();
+    return 0;
+  }
+
+  if(document.booking-form.rooms.selectedIndex<=0){
+    alert("Debe seleccionar un tipo de habitacion");
+    document.booking-form.rooms.focus();
+    return;
+  }
+
+  if (checkbox_tour.checked) {
+    if (!tour_type.value) {
+      alert("Debe seleccionar un tour si marcó la opción de reservar tour.");
+      document.booking-form.tour_type.focus();
+      return;
     }
-  
-    if (window.location.href.includes("booking_form.html")) {
-      rellenarFormularioBooking();
-    }
-  });
+  }
 
-  //----------------------------------------------------------------------------------------------------------------------------------------------//
+  if (!checkbox_tour.terms) {
+    alert("Debe aceptar la politica de privacidad");
+    document.booking-form.terms.focus();
+    return;
+  }
 
-
-  
+}

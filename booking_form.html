@@ -5,6 +5,117 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 	<title>Reserva</title>
+  <script type="text/javascript">
+    window.onload = function () {
+  const fromMain = sessionStorage.getItem('fromMain'); //this helps me to know if the form need to be filled with the information in the main
+  if (fromMain === 'true') {
+    const habitaciones = sessionStorage.getItem('guests-number');
+    const fechaEntrada = sessionStorage.getItem('fechaEntrada');
+    const fechaSalida = sessionStorage.getItem('fechaSalida');
+
+    if (habitaciones) {
+      document.getElementById("guests-number").value = habitaciones;
+    }
+    if (fechaEntrada) {
+      document.getElementById("fechaEntrada").value = fechaEntrada;
+    }
+    if (fechaSalida) {
+      document.getElementById("fechaSalida").value = fechaSalida;
+    }
+    sessionStorage.removeItem('fromMain');
+  } else {
+    sessionStorage.removeItem('guests-number');
+    sessionStorage.removeItem('fechaEntrada');
+    sessionStorage.removeItem('fechaSalida');
+  }
+}
+
+
+function validateToPay() {
+  const form = document.forms["booking-form"];
+  const name = form.name.value;
+  const email = form.email.value;
+  const phone = form.phone.value;
+  const city_country = form.city_country.value;
+  const check_in = document.getElementById("fechaEntrada").value;
+  const check_out = document.getElementById("fechaSalida").value;
+  const guest = form["guests-number"].value;
+  let adults = form["guests-adults"].value;
+  let kids = form["guests-childs"].value;
+  const room = form.rooms.value;
+  const checkbox_tour = form.tour;
+  const tour_type = form.tour_type.value;
+  const checkbox_terms = form.terms;
+
+  if (name.length <= 1) {
+    alert('Debe escribir un nombre');
+    form.name.focus();
+    return;
+  }
+
+  if (email.length <= 1) {
+    alert('Debe escribir un correo');
+    form.email.focus();
+    return;
+  }
+
+  if (isNaN(phone)) {
+    alert('Debe ingresar solo números como teléfono');
+    form.phone.focus();
+    return;
+  }
+
+  if (!check_in || !check_out) {
+    alert("Seleccione la fecha de entrada y/o salida");
+    return;
+  }
+
+  if (new Date(check_out) <= new Date(check_in)) {
+    alert("La fecha de salida debe ser posterior a la de entrada.");
+    return;
+  }
+
+  if (form["guests-number"].selectedIndex === 0) {
+    alert("Debe seleccionar una cantidad de huéspedes");
+    return;
+  }
+
+  adults = adults === "" ? 0 : parseInt(adults);
+  kids = kids === "" ? 0 : parseInt(kids);
+
+  if (adults <= 0) {
+    alert("Debe seleccionar al menos un adulto.");
+    return;
+  }
+
+  const suma = adults + kids;
+  if (suma !== parseInt(guest)) {
+    alert("La suma de adultos y niños debe ser igual al número de huéspedes.");
+    return;
+  }
+
+
+  if (form.rooms.selectedIndex <= 0) {
+    alert("Debe seleccionar un tipo de habitación");
+    return;
+  }
+
+  if (checkbox_tour.checked && tour_type === "") {
+    alert("Debe seleccionar un tour si marcó la opción de reservar tour.");
+    return;
+  }
+
+  if (!checkbox_terms.checked) {
+    alert("Debe aceptar la política de privacidad");
+    return;
+  }
+
+  sessionStorage.setItem('holder-name',name);
+  sessionStorage.setItem('email',email);
+  window.location.href = "payment.html";
+}
+
+  </script>
 </head>
 <nav class="navbar navbar-expand-lg" style="height: 100px;">
   <a class="navbar-brand" href="#"><img src="img/logo.png" width="100px" height="100px"></a>
@@ -34,12 +145,12 @@
 <main>
   <h2 style="text-align: center; color: #2c3e50;   margin-top: 2rem; margin-bottom: 2rem;">Formulario de reserva</h2>
   <div class="form">
-    <form>
+    <form action="payment.html" name="booking-form">
       <table>
-        <tr><td><input type="text" name="nombre" placeholder="Nombre completo" required></td></tr>
+        <tr><td><input type="text" name="name" placeholder="Nombre completo" required></td></tr>
         <tr><td><input type="text" name="email" placeholder="Correo electrónico" required></td></tr>
         <tr><td><input type="text" name="phone" placeholder="Número de teléfono" required></td></tr>
-        <tr><td><input type="text" name="city-country" placeholder="Ciudad y país de residencia en formato: Roma, Italia" required></td></tr>
+        <tr><td><input type="text" name="city_country" placeholder="Ciudad y país de residencia en formato: Roma, Italia" required></td></tr>
         <tr>
           <td>
             <label for="fechaEntrada">Fecha de entrada:</label>
@@ -56,9 +167,9 @@
           <td>
             <label for="guests-number">Número de húespedes:</label>
             <select name="guests-number" id="guests-number" required>
-              <option disabled selected>Seleccione</option>
-              <option>1</option><option>2</option><option>3</option>
-              <option>4</option><option>5</option><option>6</option>
+              <option name="" disabled selected>Seleccione</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
             </select>
           </td>
         </tr>
@@ -69,8 +180,9 @@
           <td>
             <label for="guests-adults">Adultos</label>
             <select name="guests-adults">
-              <option disabled selected>Seleccione</option>
-              <option>1</option><option>2</option><option>4</option><option>5</option><option>6</option>
+              <option value="" disabled selected>Seleccione</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option vavaluele="5">5</option>
+              <option value="6">6</option>
             </select>
           </td>
         </tr>
@@ -78,8 +190,8 @@
           <td>
             <label for="guests-childs">Niños</label>
             <select name="guests-childs">
-              <option disabled selected>Seleccione</option>
-              <option>1</option><option>2</option><option>3</option><option>4</option>
+              <option value="" disabled selected>Seleccione</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
             </select>
           </td>
         </tr>
@@ -103,29 +215,28 @@
           <td>
             <input type="checkbox" name="tour">Reservar tour
             <label for="tour-conf">Seleccione el tour
-            <select name="tour">
-              <option disabled selected>Seleccione</option>
-              <option>Tour de Canopy</option>
-              <option>Tour de Snorkel</option>
-              <option>Tour en Lancha</option>
+            <select name="tour_type">
+              <option value="" disabled selected>Seleccione</option>
+              <option value="canopy">Tour de Canopy</option>
+              <option value="snorkel">Tour de Snorkel</option>
+              <option value="lancha">Tour en Lancha</option>
             </select>
           </td>
         </tr>
         <tr>
           <td>
-            <input type="checkbox" name="politics" required>Acepto la <a href="#">política de privacidad</a>
+            <input type="checkbox" name="terms" required>Acepto la <a href="#">política de privacidad</a>
           </td>
         </tr>
         <tr>
           <td>
-            <button type="button" onclick="window.location.href='payment.html'">Enviar Solicitud de Reserva</button>
+            <input name="Button" id="button" type="button" onClick="validateToPay()" value="Pagar">
           </td>
         </tr>
       </table>
     </form>
   </div>
 </main>
-<script src="reserva.js"></script>
 <footer>
   <div class="footer">
     <div class="social-media">
