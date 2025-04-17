@@ -5,116 +5,11 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 	<title>Reserva</title>
-  <script type="text/javascript">
+  <script src="scripts.js"></script>
+  <script>
     window.onload = function () {
-  const fromMain = sessionStorage.getItem('fromMain'); //this helps me to know if the form need to be filled with the information in the main
-  if (fromMain === 'true') {
-    const habitaciones = sessionStorage.getItem('guests-number');
-    const fechaEntrada = sessionStorage.getItem('fechaEntrada');
-    const fechaSalida = sessionStorage.getItem('fechaSalida');
-
-    if (habitaciones) {
-      document.getElementById("guests-number").value = habitaciones;
-    }
-    if (fechaEntrada) {
-      document.getElementById("fechaEntrada").value = fechaEntrada;
-    }
-    if (fechaSalida) {
-      document.getElementById("fechaSalida").value = fechaSalida;
-    }
-    sessionStorage.removeItem('fromMain');
-  } else {
-    sessionStorage.removeItem('guests-number');
-    sessionStorage.removeItem('fechaEntrada');
-    sessionStorage.removeItem('fechaSalida');
-  }
-}
-
-
-function validateToPay() {
-  const form = document.forms["booking-form"];
-  const name = form.name.value;
-  const email = form.email.value;
-  const phone = form.phone.value;
-  const city_country = form.city_country.value;
-  const check_in = document.getElementById("fechaEntrada").value;
-  const check_out = document.getElementById("fechaSalida").value;
-  const guest = form["guests-number"].value;
-  let adults = form["guests-adults"].value;
-  let kids = form["guests-childs"].value;
-  const room = form.rooms.value;
-  const checkbox_tour = form.tour;
-  const tour_type = form.tour_type.value;
-  const checkbox_terms = form.terms;
-
-  if (name.length <= 1) {
-    alert('Debe escribir un nombre');
-    form.name.focus();
-    return;
-  }
-
-  if (email.length <= 1) {
-    alert('Debe escribir un correo');
-    form.email.focus();
-    return;
-  }
-
-  if (isNaN(phone)) {
-    alert('Debe ingresar solo números como teléfono');
-    form.phone.focus();
-    return;
-  }
-
-  if (!check_in || !check_out) {
-    alert("Seleccione la fecha de entrada y/o salida");
-    return;
-  }
-
-  if (new Date(check_out) <= new Date(check_in)) {
-    alert("La fecha de salida debe ser posterior a la de entrada.");
-    return;
-  }
-
-  if (form["guests-number"].selectedIndex === 0) {
-    alert("Debe seleccionar una cantidad de huéspedes");
-    return;
-  }
-
-  adults = adults === "" ? 0 : parseInt(adults);
-  kids = kids === "" ? 0 : parseInt(kids);
-
-  if (adults <= 0) {
-    alert("Debe seleccionar al menos un adulto.");
-    return;
-  }
-
-  const suma = adults + kids;
-  if (suma !== parseInt(guest)) {
-    alert("La suma de adultos y niños debe ser igual al número de huéspedes.");
-    return;
-  }
-
-
-  if (form.rooms.selectedIndex <= 0) {
-    alert("Debe seleccionar un tipo de habitación");
-    return;
-  }
-
-  if (checkbox_tour.checked && tour_type === "") {
-    alert("Debe seleccionar un tour si marcó la opción de reservar tour.");
-    return;
-  }
-
-  if (!checkbox_terms.checked) {
-    alert("Debe aceptar la política de privacidad");
-    return;
-  }
-
-  sessionStorage.setItem('holder-name',name);
-  sessionStorage.setItem('email',email);
-  window.location.href = "payment.html";
-}
-
+      loadBookingFormData();
+    };
   </script>
 </head>
 <nav class="navbar navbar-expand-lg" style="height: 100px;">
@@ -154,13 +49,13 @@ function validateToPay() {
         <tr>
           <td>
             <label for="fechaEntrada">Fecha de entrada:</label>
-            <input type="date" id="fechaEntrada" name="date" required>
+            <input type="date" id="fechaEntrada" name="date" min="2025-04-26" required>
           </td>
         </tr>
         <Tr>
           <td>
             <label for="fechaSalida">Fecha de salida:</label>
-            <input type="date" id="fechaSalida" name="date" required>
+            <input type="date" id="fechaSalida" name="date" min="2025-04-27" required>
           </td>
         </Tr>
         <tr>
@@ -198,11 +93,11 @@ function validateToPay() {
         <tr>
           <td>
             <label for="rooms">Tipo de habitación:</label>
-            <select name="rooms" required>
+            <select name="rooms" id="rooms" required>
               <option disabled selected>Seleccione</option>
-              <option>Junior suite</option>
-              <option>Master suite</option>
-              <option>Deluxe suite</option>
+              <option value="Junior_suite">Junior suite</option>
+              <option value="Master_suite">Master suite</option>
+              <option value="Deluxe_queen">Deluxe queen</option>
             </select>
           </td>
         </tr>
@@ -230,6 +125,7 @@ function validateToPay() {
         </tr>
         <tr>
           <td>
+            <input id="button" type="reset" value="Borrar">
             <input name="Button" id="button" type="button" onClick="validateToPay()" value="Pagar">
           </td>
         </tr>
