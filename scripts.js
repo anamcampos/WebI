@@ -144,7 +144,27 @@ function loadBookingFormData() {
   }
 }
 
+//function to calculate prices 
+function validateToPay() {
+  const form = document.forms["booking-form"];
+  const adultos = parseInt(form["guests-adults"].value) || 0;
+  const ninos = parseInt(form["guests-childs"].value) || 0;
+  const tourSeleccionado = form["tour_type"].value;
 
+  const precioAdulto = 60;
+  const precioNino = 45;
+  let precioTour = 0;
+
+  if (form["tour"].checked) {
+    if (tourSeleccionado === "lancha") precioTour = 30;
+    if (tourSeleccionado === "snorkel") precioTour = 70;
+    if (tourSeleccionado === "canopy") precioTour = 56;
+  }
+  const total = (adultos * precioAdulto) + (ninos * precioNino) + precioTour;
+
+  localStorage.setItem("totalAPagar", total);
+  window.location.href = "payment.html";
+}
 
 //------------------------------------------------------------------------------------------------------------------------------//
 //********************** MAIN FUNCTIONS **********************//
@@ -285,4 +305,17 @@ function loadPaymentFormData() {
     const emailInput = document.getElementById('email');
     if (emailInput) emailInput.value = email;
   }
+  
+//function to display the total to pay
+  const total = localStorage.getItem("totalAPagar") || 0;
+
+  const totalDisplay = document.createElement("div");
+  totalDisplay.innerHTML = `<h4>Total a pagar: $${total} USD</h4>`;
+  totalDisplay.style.marginBottom = "15px";
+  totalDisplay.style.color = "#070808";
+
+  const form = document.querySelector(".payment-method form");
+  form.parentNode.insertBefore(totalDisplay, form);
 }
+
+
