@@ -78,10 +78,11 @@ function validateToPay() {
     alert("Debe aceptar la política de privacidad");
     return;
   }
-
+  
   sessionStorage.setItem('holder-name', name);
   sessionStorage.setItem('email', email);
-  window.location.href = "payment.html";
+   
+  calculatePay(); 
 }
 
 
@@ -145,7 +146,7 @@ function loadBookingFormData() {
 }
 
 //function to calculate prices 
-function validateToPay() {
+function calculatePay() {
   const form = document.forms["booking-form"];
   const adultos = parseInt(form["guests-adults"].value) || 0;
   const ninos = parseInt(form["guests-childs"].value) || 0;
@@ -161,6 +162,7 @@ function validateToPay() {
     if (tourSeleccionado === "canopy") precioTour = 56;
   }
   const total = (adultos * precioAdulto) + (ninos * precioNino) + precioTour;
+
 
   localStorage.setItem("totalAPagar", total);
   window.location.href = "payment.html";
